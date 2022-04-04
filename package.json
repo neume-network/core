@@ -42,8 +42,6 @@
     "environmentVariables": {
       "DEBUG": "music-os-core:*"
     },
-    "require": [
-      "dotenv/config"
-    ]
+    "require": ["dotenv/config"]
   }
 }
