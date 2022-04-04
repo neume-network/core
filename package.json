@@ -4,7 +4,7 @@
 	"description": "musicOS is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
 	"main": "./src/index.mjs",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "ava",
 		"dev": "node ./src/index.mjs"
 	},
 	"repository": {
@@ -29,6 +29,11 @@
 	},
 	"homepage": "https://github.com/music-os/music-os-core#readme",
 	"dependencies": {
-		"eth-fun": "0.5.1"
+		"debug": "4.3.4",
+		"eth-fun": "0.5.1",
+		"p-limit": "4.0.0"
+	},
+	"devDependencies": {
+		"ava": "4.1.0"
 	}
 }
