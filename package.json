@@ -1,0 +1,34 @@
+{
+	"name": "music-os-core",
+	"version": "0.0.1",
+	"description": "musicOS is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
+	"main": "./src/index.mjs",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "node ./src/index.mjs"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/music-os/music-os-core.git"
+	},
+	"keywords": [
+		"open",
+		"data",
+		"music",
+		"decentralized",
+		"web3",
+		"artists",
+		"DAO",
+		"tokens",
+		"nfts"
+	],
+	"author": "Tim Daubenschütz <tim@daubenschuetz.de> (https://timdaub.github.io/)",
+	"license": "UNLICENSED",
+	"bugs": {
+		"url": "https://github.com/music-os/music-os-core/issues"
+	},
+	"homepage": "https://github.com/music-os/music-os-core#readme",
+	"dependencies": {
+		"eth-fun": "0.5.1"
+	}
+}
