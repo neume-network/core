@@ -1,39 +1,49 @@
 {
-	"name": "music-os-core",
-	"version": "0.0.1",
-	"description": "musicOS is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
-	"main": "./src/index.mjs",
-	"scripts": {
-		"test": "ava",
-		"dev": "node ./src/index.mjs"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/music-os/music-os-core.git"
-	},
-	"keywords": [
-		"open",
-		"data",
-		"music",
-		"decentralized",
-		"web3",
-		"artists",
-		"DAO",
-		"tokens",
-		"nfts"
-	],
-	"author": "Tim Daubenschütz <tim@daubenschuetz.de> (https://timdaub.github.io/)",
-	"license": "UNLICENSED",
-	"bugs": {
-		"url": "https://github.com/music-os/music-os-core/issues"
-	},
-	"homepage": "https://github.com/music-os/music-os-core#readme",
-	"dependencies": {
-		"debug": "4.3.4",
-		"eth-fun": "0.5.1",
-		"p-limit": "4.0.0"
-	},
-	"devDependencies": {
-		"ava": "4.1.0"
-	}
+  "name": "music-os-core",
+  "version": "0.0.1",
+  "description": "musicOS is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
+  "main": "./src/index.mjs",
+  "scripts": {
+    "test": "ava --verbose",
+    "dev": "node ./src/index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/music-os/music-os-core.git"
+  },
+  "keywords": [
+    "open",
+    "data",
+    "music",
+    "decentralized",
+    "web3",
+    "artists",
+    "DAO",
+    "tokens",
+    "nfts"
+  ],
+  "author": "Tim Daubenschütz <tim@daubenschuetz.de> (https://timdaub.github.io/)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/music-os/music-os-core/issues"
+  },
+  "homepage": "https://github.com/music-os/music-os-core#readme",
+  "dependencies": {
+    "debug": "4.3.4",
+    "dotenv": "16.0.0",
+    "eth-fun": "0.5.2",
+    "p-limit": "4.0.0",
+    "p-queue": "7.2.0"
+  },
+  "devDependencies": {
+    "ava": "4.1.0"
+  },
+  "ava": {
+    "environmentVariables": {
+      "DEBUG": "music-os-core:*"
+    },
+    "require": [
+      "dotenv/config"
+    ]
+  }
 }
