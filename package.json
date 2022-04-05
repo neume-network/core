@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/music-os/music-os-core#readme",
   "dependencies": {
+    "ajv": "8.11.0",
     "debug": "4.3.4",
     "dotenv": "16.0.0",
     "eth-fun": "0.5.2",
@@ -44,11 +45,16 @@
     "prettier": "2.6.2"
   },
   "ava": {
-    "nodeArguments": ["--loader=esmock", "--no-warnings"],
+    "nodeArguments": [
+      "--loader=esmock",
+      "--no-warnings"
+    ],
     "environmentVariables": {
       "DEBUG": "music-os-core:*"
     },
-    "require": ["dotenv/config"]
+    "require": [
+      "dotenv/config"
+    ]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"

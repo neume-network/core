@@ -7,7 +7,7 @@ import { exit } from "process";
 import PQueue from "p-queue";
 
 import log from "./logger.mjs";
-import { route } from "./handlers.mjs";
+import { messages } from "./handlers.mjs";
 import { translate } from "../eth.mjs";
 
 const module = {
@@ -44,5 +44,5 @@ async function run() {
   queue = new PQueue({ concurrency });
   queue.on("completed", reply);
   queue.on("error", panic);
-  parentPort.on("message", route(queue));
+  parentPort.on("message", messages.route(queue));
 }

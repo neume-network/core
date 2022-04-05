@@ -3,7 +3,28 @@ import test from "ava";
 import PQueue from "p-queue";
 import esmock from "esmock";
 
-import { route } from "../../../src/services/extractor/handlers.mjs";
+import { messages } from "../../../src/services/extractor/handlers.mjs";
+import { ValidationError } from "../../../src/errors.mjs";
+
+test("validating schema `type` prop", (t) => {
+  const message0 = {
+    type: "exit",
+  };
+  t.true(messages.validate(message0));
+
+  const message1 = {
+    type: "false type",
+  };
+  t.throws(() => messages.validate(message1), { instanceOf: ValidationError });
+
+  const message2 = {
+    type: "json-rpc",
+    method: "eth_getBlockByNumber",
+    params: [],
+    results: null,
+  };
+  t.true(messages.validate(message2));
+});
 
 test("routing a json-rpc job", (t) => {
   t.plan(1);
@@ -18,12 +39,12 @@ test("routing a json-rpc job", (t) => {
     ],
     results: null,
   };
-  route(queue)(message);
+  messages.route(queue)(message);
 });
 
 test("routing a shutdown (exit)", async (t) => {
   t.plan(1);
-  const { route } = await esmock(
+  const { messages } = await esmock(
     "../../../src/services/extractor/handlers.mjs",
     {
       process: {
@@ -34,5 +55,5 @@ test("routing a shutdown (exit)", async (t) => {
   const message = {
     type: "exit",
   };
-  route()(message);
+  messages.route()(message);
 });

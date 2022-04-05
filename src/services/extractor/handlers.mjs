@@ -1,12 +1,50 @@
 // @format
 import { exit } from "process";
 
+import Ajv from "ajv";
+
 import log from "./logger.mjs";
-import { NotImplementedError } from "../../errors.mjs";
+import { ValidationError, NotImplementedError } from "../../errors.mjs";
 import { translate } from "../eth.mjs";
 
-export function route(queue) {
+const ajv = new Ajv();
+
+const schema = {
+  type: "object",
+  properties: {
+    type: {
+      type: "string",
+      enum: ["exit", "json-rpc"],
+    },
+    method: {
+      type: "string",
+    },
+    params: {
+      type: "array",
+    },
+    results: {
+      type: "object",
+      nullable: true,
+    },
+  },
+  required: ["type"],
+};
+
+const check = ajv.compile(schema);
+function validate(value) {
+  const valid = check(value);
+  if (!valid) {
+    log(check.errors);
+    throw new ValidationError(
+      "Found 1 or more validation error when checking worker message"
+    );
+  }
+  return true;
+}
+
+function route(queue) {
   return (message) => {
+    validate(message);
     const { type } = message;
 
     if (type === "exit") {
@@ -24,3 +62,9 @@ export function route(queue) {
     }
   };
 }
+
+export const messages = {
+  schema,
+  route,
+  validate,
+};
