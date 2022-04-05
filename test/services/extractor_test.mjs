@@ -9,28 +9,28 @@ import { __dirname } from "../../src/node_filler.mjs";
 
 const extractorPath = resolve(__dirname, "./services/extractor.mjs");
 
-test("shutting down extractor worker", async t => {
+test("shutting down extractor worker", async (t) => {
   const workerData = { concurrency: 1 };
   const w = new Worker(extractorPath, {
-    workerData
+    workerData,
   });
   w.postMessage({ type: "exit" });
   t.deepEqual(await once(w, "exit"), [0]);
 });
 
 // TODO: Sandbox call with fetch-mock
-test("running script in worker queue", async t => {
+test("running script in worker queue", async (t) => {
   const workerData = { concurrency: 1 };
   const w = new Worker(extractorPath, {
-    workerData
+    workerData,
   });
   const message = {
     type: "json-rpc",
     method: "eth_getTransactionReceipt",
     params: [
-      "0xed14c3386aea0c5b39ffea466997ff13606eaedf03fe7f431326531f35809d1d"
+      "0xed14c3386aea0c5b39ffea466997ff13606eaedf03fe7f431326531f35809d1d",
     ],
-    results: null
+    results: null,
   };
 
   w.postMessage(message);

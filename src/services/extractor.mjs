@@ -19,9 +19,9 @@ const module = {
   name: "extractor",
   defaults: {
     workerData: {
-      concurrency: 1
-    }
-  }
+      concurrency: 1,
+    },
+  },
 };
 const name = `${pkg.name}:${module.name}`;
 const log = debug(name);
