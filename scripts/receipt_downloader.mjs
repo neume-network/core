@@ -7,7 +7,7 @@ import { toHex } from "eth-fun";
 
 import { __dirname } from "../src/node_filler.mjs";
 
-const extractorPath = resolve(__dirname, "./services/extractor.mjs");
+const extractorPath = resolve(__dirname, "./services/extractor/worker.mjs");
 
 run()
   .catch((err) => console.error(err))

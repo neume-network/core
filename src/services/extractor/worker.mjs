@@ -8,10 +8,10 @@ import { exit } from "process";
 import PQueue from "p-queue";
 import debug from "debug";
 
-import { NotImplementedError } from "../errors.mjs";
-import { translate } from "./eth.mjs";
-import { readJSONFileSync } from "./disc.mjs";
-import { __dirname } from "../node_filler.mjs";
+import { NotImplementedError } from "../../errors.mjs";
+import { translate } from "../eth.mjs";
+import { readJSONFileSync } from "../disc.mjs";
+import { __dirname } from "../../node_filler.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const pkg = readJSONFileSync(resolve(__dirname, "../package.json"));

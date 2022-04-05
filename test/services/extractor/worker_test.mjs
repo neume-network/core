@@ -5,9 +5,9 @@ import { Worker } from "worker_threads";
 import { once } from "events";
 import process from "process";
 
-import { __dirname } from "../../src/node_filler.mjs";
+import { __dirname } from "../../../src/node_filler.mjs";
 
-const extractorPath = resolve(__dirname, "./services/extractor.mjs");
+const extractorPath = resolve(__dirname, "./services/extractor/worker.mjs");
 
 test("shutting down extractor worker", async (t) => {
   const workerData = { concurrency: 1 };
