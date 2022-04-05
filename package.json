@@ -5,7 +5,8 @@
   "main": "./src/index.mjs",
   "scripts": {
     "test": "ava --verbose",
-    "dev": "node ./src/index.mjs"
+    "dev": "node ./src/index.mjs",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -36,12 +37,20 @@
     "p-queue": "7.2.0"
   },
   "devDependencies": {
-    "ava": "4.1.0"
+    "ava": "4.1.0",
+    "husky": "7.0.4",
+    "lint-staged": "12.3.7",
+    "prettier": "2.6.2"
   },
   "ava": {
     "environmentVariables": {
       "DEBUG": "music-os-core:*"
     },
-    "require": ["dotenv/config"]
+    "require": [
+      "dotenv/config"
+    ]
+  },
+  "lint-staged": {
+    "*.{mjs,js,css,md}": "prettier --write"
   }
 }
