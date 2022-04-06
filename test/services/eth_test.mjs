@@ -1,6 +1,7 @@
 //@format
 import { env } from "process";
 
+import { blockNumber } from "eth-fun";
 import test from "ava";
 import { toHex } from "eth-fun";
 
@@ -21,11 +22,12 @@ test("translating tx receipt rpc call", async (t) => {
 
 // TODO: Sandbox call with fetch-mock
 test("translating block by number rpc call", async (t) => {
-  const method = "eth_getBlockByNumber";
-  const params = [toHex(14527022), false];
   const options = {
     url: env.RPC_HTTP_HOST,
   };
+  const currentNumber = await blockNumber(options);
+  const method = "eth_getBlockByNumber";
+  const params = [currentNumber, false];
   const call = await translate(options, method, params);
   t.truthy(call);
 });
