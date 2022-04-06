@@ -1,4 +1,6 @@
 //@format
+import { env } from "process";
+
 import test from "ava";
 import PQueue from "p-queue";
 import esmock from "esmock";
@@ -18,6 +20,9 @@ test("validating schema `type` prop", (t) => {
   t.throws(() => messages.validate(message1), { instanceOf: ValidationError });
 
   const message2 = {
+    options: {
+      url: env.RPC_HTTP_HOST,
+    },
     type: "json-rpc",
     method: "eth_getBlockByNumber",
     params: [],
@@ -32,6 +37,9 @@ test("routing a json-rpc job", (t) => {
     add: () => t.true(true),
   };
   const message = {
+    options: {
+      url: env.RPC_HTTP_HOST,
+    },
     type: "json-rpc",
     method: "eth_getTransactionReceipt",
     params: [

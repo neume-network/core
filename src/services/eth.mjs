@@ -1,12 +1,7 @@
 //@format
-import { env } from "process";
 import { getBlockByNumber, getTransactionReceipt } from "eth-fun";
 
-const options = {
-  url: env.RPC_HTTP_HOST,
-};
-
-export async function translate(method, params) {
+export async function translate(options, method, params) {
   if (method === "eth_getTransactionReceipt") {
     return await getTransactionReceipt(options, params[0]);
   }

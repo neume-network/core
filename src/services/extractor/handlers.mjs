@@ -16,6 +16,13 @@ const schema = {
       type: "string",
       enum: ["exit", "json-rpc"],
     },
+    options: {
+      type: "object",
+      properties: {
+        url: { type: "string" },
+      },
+      required: ["url"],
+    },
     method: {
       type: "string",
     },
@@ -27,6 +34,14 @@ const schema = {
       nullable: true,
     },
   },
+  allOf: [
+    {
+      if: {
+        properties: { type: { const: "json-rpc" } },
+      },
+      then: { required: ["method", "params", "results", "options"] },
+    },
+  ],
   required: ["type"],
 };
 
@@ -51,10 +66,10 @@ function route(queue) {
       log(`Received exit signal; shutting down`);
       exit(0);
     } else if (type === "json-rpc") {
-      const { method, params } = message;
+      const { method, params, options } = message;
       log(`Calling JSON-RPC endpoint with method: ${method}`);
       queue.add(async () => {
-        const results = await translate(method, params);
+        const results = await translate(options, method, params);
         return { ...message, results };
       });
     } else {

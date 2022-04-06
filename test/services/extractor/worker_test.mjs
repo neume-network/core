@@ -1,9 +1,11 @@
 //@format
-import test from "ava";
+import { env } from "process";
 import { resolve } from "path";
 import { Worker } from "worker_threads";
 import { once } from "events";
 import process from "process";
+
+import test from "ava";
 
 import { __dirname } from "../../../src/node_filler.mjs";
 
@@ -25,6 +27,9 @@ test("running script in worker queue", async (t) => {
     workerData,
   });
   const message = {
+    options: {
+      url: env.RPC_HTTP_HOST,
+    },
     type: "json-rpc",
     method: "eth_getTransactionReceipt",
     params: [
