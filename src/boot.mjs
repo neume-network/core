@@ -5,7 +5,7 @@ import { resolve } from "path";
 
 import { toHex } from "eth-fun";
 
-import logger from "./services/extractor/logger.mjs";
+import logger from "./services/logger.mjs";
 import { __dirname } from "./node_filler.mjs";
 import { run } from "./strategies/src/index.mjs";
 
@@ -21,4 +21,5 @@ const inputs = {
   startBlock: toHex(14532654),
 };
 
-run(inputs, logger);
+const log = logger("strategies");
+run(inputs, log);

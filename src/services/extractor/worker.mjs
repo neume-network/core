@@ -6,10 +6,11 @@ import { exit } from "process";
 
 import PQueue from "p-queue";
 
-import log from "./logger.mjs";
+import logger from "../logger.mjs";
 import { messages } from "./handlers.mjs";
 import { translate } from "../eth.mjs";
 
+const log = logger("extractor");
 const module = {
   defaults: {
     workerData: {

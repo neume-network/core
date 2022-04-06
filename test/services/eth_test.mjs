@@ -1,9 +1,8 @@
 //@format
 import { env } from "process";
 
-import { blockNumber } from "eth-fun";
+import { toHex, blockNumber } from "eth-fun";
 import test from "ava";
-import { toHex } from "eth-fun";
 
 import { translate } from "../../src/services/eth.mjs";
 

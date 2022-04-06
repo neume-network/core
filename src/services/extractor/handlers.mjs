@@ -3,10 +3,11 @@ import { exit } from "process";
 
 import Ajv from "ajv";
 
-import log from "./logger.mjs";
+import logger from "../logger.mjs";
 import { ValidationError, NotImplementedError } from "../../errors.mjs";
 import { translate } from "../eth.mjs";
 
+const log = logger("extractor");
 const ajv = new Ajv();
 
 const schema = {
