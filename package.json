@@ -5,7 +5,7 @@
   "main": "./src/index.mjs",
   "scripts": {
     "test": "ava --verbose --timeout=20s",
-    "dev": "node ./scripts/run.mjs",
+    "dev": "DEBUG=music-os-core:* node ./scripts/run.mjs",
     "prepare": "husky install"
   },
   "repository": {
@@ -44,16 +44,11 @@
     "prettier": "2.6.2"
   },
   "ava": {
-    "nodeArguments": [
-      "--loader=esmock",
-      "--no-warnings"
-    ],
+    "nodeArguments": ["--loader=esmock", "--no-warnings"],
     "environmentVariables": {
       "DEBUG": "music-os-core:*"
     },
-    "require": [
-      "dotenv/config"
-    ]
+    "require": ["dotenv/config"]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"
