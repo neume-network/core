@@ -7,6 +7,21 @@
   <img src="/assets/logo.webp" />
 </p>
 
+## installation
+
+### Prerequsites
+
+music-os-core is dependent on an Ethereum full node JSON-RPC interface.
+Consider running your own node or choose an existing service from
+[ethereumnodes.com](https://ethereumnodes.com/).
+
+```bash
+cp .env-copy .env
+# and replace `RPC_HTTP_HOST` with your node's URL
+npm i
+npm run dev
+```
+
 ## contributing
 
 See [contributing.md](./contributing.md)
