@@ -2,10 +2,10 @@
   "name": "music-os-core",
   "version": "0.0.1",
   "description": "musicOS is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
-  "main": "./src/index.mjs",
+  "main": "./src/boot.mjs",
   "scripts": {
     "test": "ava --verbose --timeout=20s",
-    "dev": "DEBUG=music-os-core:* node ./scripts/run.mjs",
+    "dev": "DEBUG=music-os-core:* node ./src/boot.mjs",
     "prepare": "husky install"
   },
   "repository": {
