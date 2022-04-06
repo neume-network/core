@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { toHex } from "eth-fun";
 
 import { __dirname } from "../src/node_filler.mjs";
-import { run } from "../strategies/src/block_iterator/index.mjs";
+import { run } from "../src/strategies/src/block_iterator/index.mjs";
 
 const extractorPath = resolve(__dirname, "./services/extractor/worker.mjs");
 
