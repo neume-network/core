@@ -9,6 +9,7 @@ import { translate } from "../eth.mjs";
 
 const log = logger("extractor");
 const ajv = new Ajv();
+const version = "0.0.1";
 
 const schema = {
   type: "object",
@@ -16,6 +17,9 @@ const schema = {
     type: {
       type: "string",
       enum: ["exit", "json-rpc"],
+    },
+    version: {
+      type: "string",
     },
     options: {
       type: "object",
@@ -55,12 +59,20 @@ function validate(value) {
       "Found 1 or more validation error when checking worker message"
     );
   }
+
+  if (value.version !== version) {
+    throw new ValidationError(
+      `Difference in versions. Worker: "${version}", Message: "${value.version}"`
+    );
+  }
+
   return true;
 }
 
 function route(queue) {
   return (message) => {
     validate(message);
+
     const { type } = message;
 
     if (type === "exit") {
@@ -83,4 +95,5 @@ export const messages = {
   schema,
   route,
   validate,
+  version,
 };

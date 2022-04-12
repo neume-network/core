@@ -1,0 +1,8 @@
+title Extractor Worker Flow
+
+User->Extractor Worker: Send job message
+Extractor Worker->Extractor Worker: Adds job message to queue
+Extractor Worker->Extractor Worker: Executes job message description
+Extractor Worker->Extractor Worker: Adds job result to "results" property
+Extractor Worker->User: Sends augmented job message back
+
