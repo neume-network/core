@@ -33,7 +33,8 @@
     "ajv": "8.11.0",
     "debug": "4.3.4",
     "dotenv": "16.0.0",
-    "eth-fun": "0.5.2",
+    "eth-fun": "0.5.3",
+    "expressively-mocked-fetch": "0.2.2",
     "p-queue": "7.2.0"
   },
   "devDependencies": {
@@ -44,12 +45,17 @@
     "prettier": "2.6.2"
   },
   "ava": {
-    "nodeArguments": ["--loader=esmock", "--no-warnings"],
+    "nodeArguments": [
+      "--loader=esmock",
+      "--no-warnings"
+    ],
     "environmentVariables": {
       "DEBUG": "music-os-core:*",
       "RPC_HTTP_HOST": "https://cloudflare-eth.com"
     },
-    "require": ["dotenv/config"]
+    "require": [
+      "dotenv/config"
+    ]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"

@@ -38,16 +38,20 @@ const schema = {
       type: "object",
       nullable: true,
     },
+    error: {
+      type: "string",
+      nullable: true,
+    },
   },
   allOf: [
     {
       if: {
         properties: { type: { const: "json-rpc" } },
       },
-      then: { required: ["method", "params", "results", "options"] },
+      then: { required: ["method", "params", "results", "error", "options"] },
     },
   ],
-  required: ["type"],
+  required: ["type", "version"],
 };
 
 const check = ajv.compile(schema);

@@ -6,11 +6,44 @@ import { once } from "events";
 import process from "process";
 
 import test from "ava";
+import createWorker from "expressively-mocked-fetch";
 
 import { __dirname } from "../../../src/node_filler.mjs";
 import { messages } from "../../../src/services/extractor/api.mjs";
 
 const extractorPath = resolve(__dirname, "./services/extractor/worker.mjs");
+
+test("sending message to json-rpc node that fails request", async (t) => {
+  const workerData = { concurrency: 1 };
+  const w = new Worker(extractorPath, {
+    workerData,
+  });
+
+  const mockWorker = await createWorker(`
+    app.post('/', function (req, res) {
+      res.status(500).send();
+    });
+  `);
+  const url = `http://localhost:${mockWorker.port}`;
+
+  const message = {
+    options: {
+      url,
+    },
+    version: messages.version,
+    type: "json-rpc",
+    method: "eth_getTransactionReceipt",
+    params: [
+      "0xed14c3386aea0c5b39ffea466997ff13606eaedf03fe7f431326531f35809d1d",
+    ],
+    results: null,
+  };
+
+  w.postMessage(message);
+  const [response] = await once(w, "message");
+  const [error] = await once(w, "error");
+  t.log(error);
+});
 
 test("shutting down extractor worker", async (t) => {
   const workerData = { concurrency: 1 };
