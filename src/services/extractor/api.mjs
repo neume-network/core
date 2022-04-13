@@ -44,10 +44,10 @@ const schema = {
       if: {
         properties: { type: { const: "json-rpc" } },
       },
-      then: { required: ["method", "params", "results", "options"] },
+      then: { required: ["method", "params", "results", "version", "options"] },
     },
   ],
-  required: ["type"],
+  required: ["type", "version"],
 };
 
 const check = ajv.compile(schema);
