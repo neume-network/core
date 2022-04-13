@@ -38,11 +38,7 @@ test("validating schema `type` prop", (t) => {
   t.true(messages.validate(message2));
 });
 
-test("routing a json-rpc job", (t) => {
-  t.plan(1);
-  const queue = {
-    add: () => t.true(true),
-  };
+test("routing a json-rpc job", async (t) => {
   const message = {
     options: {
       url: env.RPC_HTTP_HOST,
@@ -55,19 +51,40 @@ test("routing a json-rpc job", (t) => {
     ],
     results: null,
   };
-  messages.route(queue)(message);
+
+  t.plan(2);
+  const cb = (err, res) => {
+    t.falsy(err);
+    t.truthy(res);
+  };
+  await messages.route(message, cb);
 });
 
-test("routing a shutdown (exit)", async (t) => {
-  t.plan(1);
-  const { messages } = await esmock("../../../src/services/extractor/api.mjs", {
-    process: {
-      exit: () => t.true(true),
+test("handling failed job", async (t) => {
+  const apiMock = await esmock("../../../src/services/extractor/api.mjs", {
+    "../../../src/services/extractor/eth.mjs": {
+      translate: async () => {
+        throw new Error("MockError");
+      },
     },
   });
+
   const message = {
-    type: "exit",
-    version: messages.version,
+    options: {
+      url: env.RPC_HTTP_HOST,
+    },
+    version: apiMock.messages.version,
+    type: "json-rpc",
+    method: "eth_getTransactionReceipt",
+    params: [
+      "0xed14c3386aea0c5b39ffea466997ff13606eaedf03fe7f431326531f35809d1d",
+    ],
+    results: null,
   };
-  messages.route()(message);
+
+  const cb = async (err, res) => {
+    t.truthy(err);
+    t.falsy(res);
+  };
+  await apiMock.messages.route(message, cb);
 });

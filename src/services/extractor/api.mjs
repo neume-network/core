@@ -69,26 +69,24 @@ function validate(value) {
   return true;
 }
 
-function route(queue) {
-  return (message) => {
-    validate(message);
+async function route(message, cb) {
+  const { type } = message;
 
-    const { type } = message;
+  if (type === "json-rpc") {
+    const { method, params, options } = message;
+    log(`Calling JSON-RPC endpoint with method: ${method}`);
+    let results;
 
-    if (type === "exit") {
-      log(`Received exit signal; shutting down`);
-      exit(0);
-    } else if (type === "json-rpc") {
-      const { method, params, options } = message;
-      log(`Calling JSON-RPC endpoint with method: ${method}`);
-      queue.add(async () => {
-        const results = await translate(options, method, params);
-        return { ...message, results };
-      });
-    } else {
-      throw new NotImplementedError();
+    try {
+      results = await translate(options, method, params);
+    } catch (err) {
+      return cb(err);
     }
-  };
+
+    return cb(null, { ...message, results });
+  } else {
+    return cb(new NotImplementedError());
+  }
 }
 
 export const messages = {

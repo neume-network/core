@@ -4,7 +4,7 @@ import { Worker, isMainThread, workerData, parentPort } from "worker_threads";
 import { resolve } from "path";
 import { exit } from "process";
 
-import PQueue from "p-queue";
+import Queue from "better-queue";
 
 import logger from "../logger.mjs";
 import { messages } from "./api.mjs";
@@ -18,7 +18,6 @@ const module = {
     },
   },
 };
-let queue;
 
 if (isMainThread) {
   log("Detected mainthread: Respawning extractor as worker_thread");
@@ -30,20 +29,40 @@ if (isMainThread) {
   run();
 }
 
-function panic(error) {
+// TODO check how to properly return errors from worker
+function panic(taskId, error) {
   log(error.toString());
   exit(1);
 }
 
-function reply(result) {
+function reply(taskId, result) {
   parentPort.postMessage(result);
+}
+
+function messageHandler(queue) {
+  return (message) => {
+    try {
+      messages.validate(message);
+    } catch (err) {
+      return panic(error);
+    }
+
+    if (message.type === "exit") {
+      log(`Received exit signal; shutting down`);
+      exit(0);
+    }
+
+    queue.push(message);
+  };
 }
 
 async function run() {
   log("Starting as worker thread");
   const { concurrency } = workerData;
-  queue = new PQueue({ concurrency });
-  queue.on("completed", reply);
-  queue.on("error", panic);
-  parentPort.on("message", messages.route(queue));
+  const queue = new Queue(messages.route, {
+    concurrent: concurrency,
+  });
+  queue.on("task_finish", reply);
+  queue.on("task_failed", panic);
+  parentPort.on("message", messageHandler(queue));
 }
