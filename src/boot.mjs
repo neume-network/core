@@ -9,7 +9,7 @@ import logger from "./services/logger.mjs";
 import { __dirname } from "./node_filler.mjs";
 import { run } from "./strategies/src/index.mjs";
 
-const extractorPath = resolve(__dirname, "./services/extractor/worker.mjs");
+const extractorPath = resolve(__dirname, "./services/extractor/start.mjs");
 
 const workerData = { concurrency: 20 };
 const worker = new Worker(extractorPath, {

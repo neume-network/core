@@ -1,6 +1,8 @@
 //@format
 import { blockNumber, getBlockByNumber, getTransactionReceipt } from "eth-fun";
 
+import { NotImplementedError } from "../../errors.mjs";
+
 export async function translate(options, method, params) {
   if (method === "eth_getTransactionReceipt") {
     return await getTransactionReceipt(options, params[0]);
@@ -10,5 +12,7 @@ export async function translate(options, method, params) {
     return await getBlockByNumber(options, ...params);
   } else if (method == "eth_blockNumber") {
     return await blockNumber(options);
+  } else {
+    throw new NotImplementedError();
   }
 }

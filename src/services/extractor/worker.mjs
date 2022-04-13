@@ -1,7 +1,5 @@
 //@format
-import "dotenv/config";
-import { Worker, isMainThread, workerData, parentPort } from "worker_threads";
-import { resolve } from "path";
+import { workerData, parentPort } from "worker_threads";
 import { exit } from "process";
 
 import Queue from "better-queue";
@@ -11,35 +9,19 @@ import { messages } from "./api.mjs";
 import { translate } from "./eth.mjs";
 
 const log = logger("extractor");
-const module = {
-  defaults: {
-    workerData: {
-      concurrency: 1,
-    },
-  },
-};
-
-if (isMainThread) {
-  log("Detected mainthread: Respawning extractor as worker_thread");
-  // INFO: We're launching this file as a `Worker` when the mainthread is
-  // detected as this can be useful when running it without an accompanying
-  // other process.
-  new Worker(__filename, { workerData: module.defaults.workerData });
-} else {
-  run();
-}
 
 // TODO check how to properly return errors from worker
-function panic(taskId, error) {
-  log(error.toString());
-  exit(1);
+export function panic(taskId, message) {
+  const error = message.error.toString();
+  log(error);
+  parentPort.postMessage({ ...message, error });
 }
 
-function reply(taskId, result) {
-  parentPort.postMessage(result);
+export function reply(taskId, message) {
+  parentPort.postMessage(message);
 }
 
-function messageHandler(queue) {
+export function messageHandler(queue) {
   return (message) => {
     try {
       messages.validate(message);
@@ -56,7 +38,7 @@ function messageHandler(queue) {
   };
 }
 
-async function run() {
+export async function run() {
   log("Starting as worker thread");
   const { concurrency } = workerData;
   const queue = new Queue(messages.route, {

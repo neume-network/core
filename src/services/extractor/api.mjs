@@ -79,13 +79,13 @@ async function route(message, cb) {
 
     try {
       results = await translate(options, method, params);
-    } catch (err) {
-      return cb(err);
+    } catch (error) {
+      return cb({ ...message, error });
     }
 
     return cb(null, { ...message, results });
   } else {
-    return cb(new NotImplementedError());
+    return cb({ ...message, error: new NotImplementedError() });
   }
 }
 
