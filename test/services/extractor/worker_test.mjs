@@ -1,77 +1,46 @@
 //@format
-import { env } from "process";
-import { resolve } from "path";
-import { Worker } from "worker_threads";
-import { once } from "events";
-import process from "process";
-
 import test from "ava";
+import esmock from "esmock";
 
-import { __dirname } from "../../../src/node_filler.mjs";
 import { messages } from "../../../src/services/extractor/api.mjs";
 
-const extractorPath = resolve(__dirname, "./services/extractor/start.mjs");
+test("test throw on invalid message", async (t) => {
+  t.plan(1);
+  const workerMock = await esmock(
+    "../../../src/services/extractor/worker.mjs",
+    null,
+    {
+      worker_threads: {
+        parentPort: {
+          postMessage: () => t.true(true),
+        },
+        workerData: {
+          concurrency: 1,
+        },
+      },
+    }
+  );
 
-test("sending throwing job to worker", async (t) => {
-  const workerData = { concurrency: 1 };
-  const w = new Worker(extractorPath, {
-    workerData,
-  });
   const message = {
-    options: {
-      url: env.RPC_HTTP_HOST,
-    },
-    version: messages.version,
-    type: "json-rpc",
-    method: "willmakeworkerthrow",
-    params: [
-      "0xed14c3386aea0c5b39ffea466997ff13606eaedf03fe7f431326531f35809d1d",
-    ],
-    results: null,
+    hello: "world",
   };
-
-  w.postMessage(message);
-  const [response] = await once(w, "message");
-  t.is(response.error, "NotImplementedError");
-  w.postMessage({ type: "exit", version: messages.version });
-  t.deepEqual(await once(w, "exit"), [0]);
+  workerMock.messageHandler({})(message);
 });
 
-test("shutting down extractor worker", async (t) => {
-  const workerData = { concurrency: 1 };
-  const w = new Worker(extractorPath, {
-    workerData,
-  });
-  w.postMessage({ type: "exit", version: messages.version });
-  t.deepEqual(await once(w, "exit"), [0]);
-});
+test("call exit", async (t) => {
+  t.plan(1);
+  const workerMock = await esmock(
+    "../../../src/services/extractor/worker.mjs",
+    null,
+    {
+      process: {
+        exit: () => t.true(true),
+      },
+    }
+  );
 
-// TODO: Sandbox call with fetch-mock
-test("running script in worker queue", async (t) => {
-  const workerData = { concurrency: 1 };
-  const w = new Worker(extractorPath, {
-    workerData,
-  });
-  const message = {
-    options: {
-      url: env.RPC_HTTP_HOST,
-    },
+  workerMock.messageHandler()({
+    type: "exit",
     version: messages.version,
-    type: "json-rpc",
-    method: "eth_getTransactionReceipt",
-    params: [
-      "0xed14c3386aea0c5b39ffea466997ff13606eaedf03fe7f431326531f35809d1d",
-    ],
-    results: null,
-  };
-
-  w.postMessage(message);
-  const [response] = await once(w, "message");
-  t.truthy(response);
-  t.truthy(response.results);
-  t.is(response.type, "json-rpc");
-  t.deepEqual(response.params, message.params);
-  t.is(response.method, "eth_getTransactionReceipt");
-  w.postMessage({ type: "exit", version: messages.version });
-  t.deepEqual(await once(w, "exit"), [0]);
+  });
 });

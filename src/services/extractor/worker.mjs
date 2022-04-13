@@ -10,7 +10,6 @@ import { translate } from "./eth.mjs";
 
 const log = logger("extractor");
 
-// TODO check how to properly return errors from worker
 export function panic(taskId, message) {
   const error = message.error.toString();
   log(error);
@@ -25,16 +24,16 @@ export function messageHandler(queue) {
   return (message) => {
     try {
       messages.validate(message);
-    } catch (err) {
-      return panic(error);
+    } catch (error) {
+      return panic(null, { ...message, error: error.toString() });
     }
 
     if (message.type === "exit") {
       log(`Received exit signal; shutting down`);
       exit(0);
+    } else {
+      queue.push(message);
     }
-
-    queue.push(message);
   };
 }
 
