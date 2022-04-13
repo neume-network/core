@@ -4,7 +4,7 @@ import { env } from "process";
 import { toHex, blockNumber } from "eth-fun";
 import test from "ava";
 
-import { translate } from "../../src/services/eth.mjs";
+import { translate } from "../../../src/services/extractor/eth.mjs";
 
 // TODO: Sandbox call with fetch-mock
 test("translating tx receipt rpc call", async (t) => {

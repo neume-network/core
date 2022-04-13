@@ -8,7 +8,7 @@ import PQueue from "p-queue";
 
 import logger from "../logger.mjs";
 import { messages } from "./api.mjs";
-import { translate } from "../eth.mjs";
+import { translate } from "./eth.mjs";
 
 const log = logger("extractor");
 const module = {

@@ -5,7 +5,7 @@ import Ajv from "ajv";
 
 import logger from "../logger.mjs";
 import { ValidationError, NotImplementedError } from "../../errors.mjs";
-import { translate } from "../eth.mjs";
+import { translate } from "./eth.mjs";
 
 const log = logger("extractor");
 const ajv = new Ajv();

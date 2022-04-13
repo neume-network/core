@@ -2,7 +2,6 @@
 import { env } from "process";
 
 import test from "ava";
-import PQueue from "p-queue";
 import esmock from "esmock";
 
 import { messages } from "../../../src/services/extractor/api.mjs";
