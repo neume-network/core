@@ -6,6 +6,7 @@
   "scripts": {
     "test": "ava --verbose --timeout=20s",
     "dev": "DEBUG=music-os-core:* node ./src/boot.mjs",
+    "dev:silent": "node ./src/boot.mjs",
     "prepare": "husky install"
   },
   "repository": {
@@ -47,17 +48,12 @@
     "prettier": "2.6.2"
   },
   "ava": {
-    "nodeArguments": [
-      "--loader=esmock",
-      "--no-warnings"
-    ],
+    "nodeArguments": ["--loader=esmock", "--no-warnings"],
     "environmentVariables": {
       "DEBUG": "music-os-core:*",
       "RPC_HTTP_HOST": "https://cloudflare-eth.com"
     },
-    "require": [
-      "dotenv/config"
-    ]
+    "require": ["dotenv/config"]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"
