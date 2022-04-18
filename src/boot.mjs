@@ -5,14 +5,14 @@ import { resolve } from "path";
 
 import { toHex } from "eth-fun";
 
-import logger from "./services/logger.mjs";
+import logger from "./logger.mjs";
 import { __dirname } from "./node_filler.mjs";
 import { run } from "./strategies/src/index.mjs";
 
-const extractorPath = resolve(__dirname, "./services/extractor/start.mjs");
+const workerPath = resolve(__dirname, "./worker_start.mjs");
 
 const workerData = { concurrency: 20 };
-const worker = new Worker(extractorPath, {
+const worker = new Worker(workerPath, {
   workerData,
 });
 

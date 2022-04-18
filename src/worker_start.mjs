@@ -1,10 +1,10 @@
 import "dotenv/config";
 import { Worker, isMainThread, workerData } from "worker_threads";
 
-import logger from "../logger.mjs";
-import { run } from "./worker.mjs";
+import logger from "./logger.mjs";
+import { run } from "@music-os/extraction-worker";
 
-const log = logger("extractor");
+const log = logger("start");
 const module = {
   defaults: {
     workerData: {

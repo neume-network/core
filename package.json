@@ -31,29 +31,33 @@
   },
   "homepage": "https://github.com/music-os/music-os-core#readme",
   "dependencies": {
-    "ajv": "8.11.0",
-    "better-queue": "3.8.10",
-    "cross-fetch": "3.1.5",
+    "@music-os/extraction-worker": "0.0.1",
     "debug": "4.3.4",
     "dotenv": "16.0.0",
-    "esmock": "1.7.5",
-    "eth-fun": "0.5.2",
-    "expressively-mocked-fetch": "0.2.2",
-    "quibble": "0.6.8"
+    "eth-fun": "0.5.3"
   },
   "devDependencies": {
     "ava": "4.1.0",
+    "esmock": "1.7.5",
     "husky": "7.0.4",
     "lint-staged": "12.3.7",
     "prettier": "2.6.2"
   },
   "ava": {
-    "nodeArguments": ["--loader=esmock", "--no-warnings"],
+    "files": [
+      "!src/strategies"
+    ],
+    "nodeArguments": [
+      "--loader=esmock",
+      "--no-warnings"
+    ],
     "environmentVariables": {
       "DEBUG": "music-os-core:*",
       "RPC_HTTP_HOST": "https://cloudflare-eth.com"
     },
-    "require": ["dotenv/config"]
+    "require": [
+      "dotenv/config"
+    ]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"
