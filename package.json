@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/music-os/music-os-core#readme",
   "dependencies": {
-    "@music-os/extraction-worker": "0.0.1",
+    "@music-os/extraction-worker": "0.0.2",
     "debug": "4.3.4",
     "dotenv": "16.0.0",
     "eth-fun": "0.5.3"
@@ -44,20 +44,13 @@
     "prettier": "2.6.2"
   },
   "ava": {
-    "files": [
-      "!src/strategies"
-    ],
-    "nodeArguments": [
-      "--loader=esmock",
-      "--no-warnings"
-    ],
+    "files": ["!src/strategies"],
+    "nodeArguments": ["--loader=esmock", "--no-warnings"],
     "environmentVariables": {
       "DEBUG": "music-os-core:*",
       "RPC_HTTP_HOST": "https://cloudflare-eth.com"
     },
-    "require": [
-      "dotenv/config"
-    ]
+    "require": ["dotenv/config"]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"
