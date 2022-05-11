@@ -6,7 +6,8 @@ import { resolve } from "path";
 import { toHex } from "eth-fun";
 
 import { __dirname } from "./node_filler.mjs";
-import { run } from "./strategies/src/index.mjs";
+import * as strategies from "./strategies/src/index.mjs";
+import * as environment from "./environment.mjs";
 
 const workerPath = resolve(__dirname, "./worker_start.mjs");
 
@@ -15,4 +16,5 @@ const worker = new Worker(workerPath, {
   workerData,
 });
 
-run(worker);
+environment.validate(["RPC_HTTP_HOST", "RPC_API_KEY", "DATA_DIR"]);
+strategies.run(worker);
