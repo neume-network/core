@@ -43,20 +43,15 @@
     "prettier": "2.6.2"
   },
   "ava": {
-    "files": [
-      "!src/strategies"
-    ],
-    "nodeArguments": [
-      "--loader=esmock",
-      "--no-warnings"
-    ],
+    "files": ["!src/strategies"],
+    "nodeArguments": ["--loader=esmock", "--no-warnings"],
     "environmentVariables": {
       "DEBUG": "music-os-core:*",
-      "RPC_HTTP_HOST": "https://cloudflare-eth.com"
+      "RPC_HTTP_HOST": "https://cloudflare-eth.com",
+      "RPC_API_KEY": "ABC",
+      "DATA_DIR": "data"
     },
-    "require": [
-      "dotenv/config"
-    ]
+    "require": ["dotenv/config"]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"
