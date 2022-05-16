@@ -4,6 +4,7 @@
   "description": "musicOS is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
   "main": "./src/boot.mjs",
   "scripts": {
+    "postinstall": "git submodule sync && git submodule update --init && cd ./src/strategies && npm install",
     "test": "ava --verbose --timeout=20s",
     "dev": "DEBUG=music-os-core:* node ./src/boot.mjs",
     "dev:silent": "node ./src/boot.mjs",
