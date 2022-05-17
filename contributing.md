@@ -1,20 +1,33 @@
-# contributing to music-os-core
+# contributing to neume-network/core
+
+## process
+
+neume-network implements a "social architecture" outlined through a
+[specification
+document](https://github.com/neume-network/documents/blob/main/social-architecture.md).
+Neume contributors can get paid. See the [handbook
+document](https://github.com/neume-network/documents/blob/main/neumehandbook.md)
+for details.
+
+## non-GitHub communication
+
+All non-GitHub communication happens in the
+[hifilabs.co](https://www.hifilabs.co/) Discord. Please
+[join](https://discord.gg/uP4nTrQKPT) and say "hello."
 
 ## purpose
 
-music-os is building a decentralized (meta) data layer for web3 and music. We
-want to enable artists to create new ownership, distribution and collaboration
-experiences. Albeit potentially built upon similar technological foundations,
-in positive terms, to reappropriate the term, music-os shall be web3's "napster
-moment."
+neume-network is building a decentralized (meta) data layer for web3 and music.
+We want to enable artists to create new ownership, distribution and
+collaboration experiences.
 
 ## design presets
 
 Non-exhaustive list:
 
-- music-os comes with batteries included. No need to install Postgres, Redis or
+- neume-network comes with batteries included. No need to install Postgres, Redis or
   any miscellaneous software.
-- For all interfaces, music-os implements [semver](https://semver.org/).
+- For all interfaces, neume-network implements [semver](https://semver.org/).
 
 ## sending a pull-request
 
