@@ -1,3 +1,3 @@
 [submodule "src/strategies"]
 	path = src/strategies
-	url = git@github.com:music-os/music-os-strategies.git
+	url = git@github.com:neume-network/neume-network-strategies.git
