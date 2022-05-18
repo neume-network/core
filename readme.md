@@ -1,7 +1,7 @@
-# music-os-core
+# neume-network-core
 
-[![dry run prettier](https://github.com/music-os/music-os-core/actions/workflows/prettier.yml/badge.svg)](https://github.com/music-os/music-os-core/actions/workflows/prettier.yml)
-[![unit tests](https://github.com/music-os/music-os-core/actions/workflows/node.js.yml/badge.svg)](https://github.com/music-os/music-os-core/actions/workflows/node.js.yml)
+[![dry run prettier](https://github.com/neume-network/neume-network-core/actions/workflows/prettier.yml/badge.svg)](https://github.com/neume-network/neume-network-core/actions/workflows/prettier.yml)
+[![unit tests](https://github.com/neume-network/neume-network-core/actions/workflows/node.js.yml/badge.svg)](https://github.com/neume-network/neume-network-core/actions/workflows/node.js.yml)
 
 <p align="center">
   <img src="/assets/logo.webp" />
@@ -11,7 +11,7 @@
 
 ### Prerequsites
 
-music-os-core is dependent on an Ethereum full node JSON-RPC interface.
+neume-network-core is dependent on an Ethereum full node JSON-RPC interface.
 Consider running your own node or choose an existing service from
 [ethereumnodes.com](https://ethereumnodes.com/).
 
