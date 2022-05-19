@@ -1,18 +1,18 @@
 {
-  "name": "music-os-core",
+  "name": "neume-network-core",
   "version": "0.0.1",
-  "description": "musicOS is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
+  "description": "neume network is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
   "main": "./src/boot.mjs",
   "scripts": {
     "postinstall": "git submodule sync && git submodule update --init && cd ./src/strategies && npm install",
     "test": "ava --verbose --timeout=20s",
-    "dev": "DEBUG=music-os-core:* node ./src/boot.mjs",
+    "dev": "DEBUG=neume-network-core:* node ./src/boot.mjs",
     "dev:silent": "node ./src/boot.mjs",
     "prepare": "husky install"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/music-os/music-os-core.git"
+    "url": "git+https://github.com/neume-network/neume-network-core.git"
   },
   "keywords": [
     "open",
@@ -28,11 +28,11 @@
   "author": "Tim Daubenschütz <tim@daubenschuetz.de> (https://timdaub.github.io/)",
   "license": "GPL-3.0-only",
   "bugs": {
-    "url": "https://github.com/music-os/music-os-core/issues"
+    "url": "https://github.com/neume-network/neume-network-core/issues"
   },
-  "homepage": "https://github.com/music-os/music-os-core#readme",
+  "homepage": "https://github.com/neume-network/neume-network-core#readme",
   "dependencies": {
-    "@music-os/extraction-worker": "0.0.3",
+    "@neume-network/extraction-worker": "0.0.3",
     "debug": "4.3.4",
     "dotenv": "16.0.0"
   },
@@ -47,7 +47,7 @@
     "files": ["!src/strategies"],
     "nodeArguments": ["--loader=esmock", "--no-warnings"],
     "environmentVariables": {
-      "DEBUG": "music-os-core:*",
+      "DEBUG": "neume-network-core:*",
       "RPC_HTTP_HOST": "https://cloudflare-eth.com",
       "RPC_API_KEY": "ABC",
       "DATA_DIR": "data"

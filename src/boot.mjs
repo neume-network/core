@@ -4,8 +4,6 @@ import { Worker } from "worker_threads";
 import { resolve } from "path";
 import { env } from "process";
 
-import { toHex } from "eth-fun";
-
 import { __dirname } from "./node_filler.mjs";
 import * as strategies from "./strategies/src/index.mjs";
 import * as environment from "./environment.mjs";
