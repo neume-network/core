@@ -16,7 +16,6 @@ test("provisioning an existing directory", async (t) => {
   t.pass();
 });
 
-// TODO: Why do we get a EPERM error on unlinking the directory in the end?
 test("provisioning a non-existent directory", async (t) => {
   const testDir = "fixtures";
   const nonExistentDir = resolve(__dirname, testDir, "nonexistent");
