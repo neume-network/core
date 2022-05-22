@@ -1,11 +1,7 @@
 # neume-network-core
 
-[![dry run prettier](https://github.com/neume-network/neume-network-core/actions/workflows/prettier.yml/badge.svg)](https://github.com/neume-network/neume-network-core/actions/workflows/prettier.yml)
-[![unit tests](https://github.com/neume-network/neume-network-core/actions/workflows/node.js.yml/badge.svg)](https://github.com/neume-network/neume-network-core/actions/workflows/node.js.yml)
-
-<p align="center">
-  <img src="/assets/logo.webp" />
-</p>
+[![dry run prettier](https://github.com/neume-network/core/actions/workflows/prettier.yml/badge.svg)](https://github.com/neume-network/core/actions/workflows/prettier.yml)
+[![unit tests](https://github.com/neume-network/core/actions/workflows/node.js.yml/badge.svg)](https://github.com/neume-network/core/actions/workflows/node.js.yml)
 
 ## installation
 
