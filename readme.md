@@ -16,6 +16,7 @@ Consider running your own node or choose an existing service from
 [ethereumnodes.com](https://ethereumnodes.com/).
 
 ```bash
+git clone git@github.com:neume-network/core.git
 cp .env-copy .env
 # and replace `RPC_HTTP_HOST` with your node's URL
 npm i
