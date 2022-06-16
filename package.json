@@ -44,8 +44,13 @@
     "prettier": "2.6.2"
   },
   "ava": {
-    "files": ["!src/strategies"],
-    "nodeArguments": ["--loader=esmock", "--no-warnings"],
+    "files": [
+      "!src/strategies"
+    ],
+    "nodeArguments": [
+      "--loader=esmock",
+      "--no-warnings"
+    ],
     "environmentVariables": {
       "DEBUG": "neume-network-core:*",
       "RPC_HTTP_HOST": "https://cloudflare-eth.com",
@@ -54,7 +59,9 @@
       "EXTRACTION_WORKER_CONCURRENCY": "12",
       "IPFS_HTTPS_GATEWAY": "https://cloudflare-ipfs.com/ipfs/"
     },
-    "require": ["dotenv/config"]
+    "require": [
+      "dotenv/config"
+    ]
   },
   "lint-staged": {
     "*.{mjs,js,css,md}": "prettier --write"
