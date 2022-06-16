@@ -17,7 +17,7 @@ const worker = new Worker(workerPath, {
 });
 
 async function boot() {
-  environment.validate(["RPC_HTTP_HOST", "RPC_API_KEY", "DATA_DIR"]);
+  environment.validate(environment.requiredVars);
   await disc.provisionDir(resolve(__dirname, "..", env.DATA_DIR));
   await strategies.run(worker);
 }

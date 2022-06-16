@@ -3,6 +3,13 @@ import { env } from "process";
 
 import { NotFoundError } from "./errors.mjs";
 
+export const requiredVars = [
+  "RPC_HTTP_HOST",
+  "RPC_API_KEY",
+  "DATA_DIR",
+  "EXTRACTION_WORKER_CONCURRENCY",
+];
+
 export function validate(required) {
   for (const name of required) {
     if (!env[name]) {

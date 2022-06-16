@@ -1,7 +1,7 @@
 // @format
 import test from "ava";
 
-import { validate } from "../src/environment.mjs";
+import { validate, requiredVars } from "../src/environment.mjs";
 import { NotFoundError } from "../src/errors.mjs";
 
 test("environment validation function", (t) => {
@@ -9,6 +9,8 @@ test("environment validation function", (t) => {
     instanceOf: NotFoundError,
   });
 
-  validate(["RPC_HTTP_HOST", "RPC_API_KEY", "DATA_DIR"]);
+  t.truthy(requiredVars);
+  t.true(requiredVars.length > 0);
+  validate(requiredVars);
   t.pass();
 });

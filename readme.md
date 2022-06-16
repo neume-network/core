@@ -33,10 +33,12 @@ following environment variables:
 ```
 RPC_HTTP_HOST=https://
 DATA_DIR=data
+EXTRACTION_WORKER_CONCURRENCY=12
 ```
 
-Additionally, if `RPC_HTTP_HOST` requires Bearer-token authorization, users
-must define `RPC_API_KEY` to be used in an HTTP `Authorization: Bearer ${RPC_API_KEY}` header.
+- If `RPC_HTTP_HOST` requires Bearer-token authorization, users must define
+  `RPC_API_KEY` to be used in an HTTP `Authorization: Bearer ${RPC_API_KEY}`
+  header.
 
 ### managing `DATA_DIR` and the file system directory
 

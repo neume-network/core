@@ -50,7 +50,8 @@
       "DEBUG": "neume-network-core:*",
       "RPC_HTTP_HOST": "https://cloudflare-eth.com",
       "RPC_API_KEY": "ABC",
-      "DATA_DIR": "data"
+      "DATA_DIR": "data",
+      "EXTRACTION_WORKER_CONCURRENCY": "12"
     },
     "require": ["dotenv/config"]
   },
