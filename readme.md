@@ -5,6 +5,12 @@
 
 ## installation
 
+We're still building neume network so things are drastically changing all the
+time. It may be that the main branch isn't working. But we're tagging
+individual git commits that end up producing good results. Check
+[changelog.md](https://github.com/neume-network/core/blob/main/changelog.md)
+for all available tags.
+
 ### prerequsites
 
 neume-network-core is dependent on an Ethereum full node JSON-RPC interface.
