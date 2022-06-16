@@ -8,6 +8,7 @@ export const requiredVars = [
   "RPC_API_KEY",
   "DATA_DIR",
   "EXTRACTION_WORKER_CONCURRENCY",
+  "IPFS_HTTPS_GATEWAY",
 ];
 
 export function validate(required) {

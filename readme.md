@@ -34,6 +34,7 @@ following environment variables:
 RPC_HTTP_HOST=https://
 DATA_DIR=data
 EXTRACTION_WORKER_CONCURRENCY=12
+IPFS_HTTPS_GATEWAY=https://
 ```
 
 - If `RPC_HTTP_HOST` requires Bearer-token authorization, users must define
