@@ -9,6 +9,7 @@ export const requiredVars = [
   "DATA_DIR",
   "EXTRACTION_WORKER_CONCURRENCY",
   "IPFS_HTTPS_GATEWAY",
+  "IPFS_HTTPS_GATEWAY_KEY",
 ];
 
 export function validate(required) {
