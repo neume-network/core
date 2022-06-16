@@ -11,14 +11,17 @@ import * as disc from "./disc.mjs";
 
 const workerPath = resolve(__dirname, "./worker_start.mjs");
 
-const workerData = { concurrency: 20 };
-const worker = new Worker(workerPath, {
-  workerData,
-});
-
 async function boot() {
   environment.validate(environment.requiredVars);
   await disc.provisionDir(resolve(__dirname, "..", env.DATA_DIR));
+
+  const workerData = {
+    concurrency: parseInt(env.EXTRACTION_WORKER_CONCURRENCY, 10),
+  };
+  const worker = new Worker(workerPath, {
+    workerData,
+  });
+
   await strategies.run(worker);
 }
 
