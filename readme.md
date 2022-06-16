@@ -5,7 +5,7 @@
 
 ## installation
 
-### Prerequsites
+### prerequsites
 
 neume-network-core is dependent on an Ethereum full node JSON-RPC interface.
 Consider running your own node or choose an existing service from
@@ -18,6 +18,32 @@ cp .env-copy .env
 npm i
 npm run dev
 ```
+
+## component contract
+
+@neume-network/core guarantees the existence of variables and folders to other
+@neume-network packages like @neume-network/strategies. Below, we outline what
+core is currently guaranteeing:
+
+### existence and definition of environment variables
+
+@neume-network/core must guarantee the existence and definition of the
+following environment variables:
+
+```
+RPC_HTTP_HOST=https://
+DATA_DIR=data
+```
+
+Additionally, if `RPC_HTTP_HOST` requires Bearer-token authorization, users
+must define `RPC_API_KEY` to be used in an HTTP `Authorization: Bearer ${RPC_API_KEY}` header.
+
+### managing `DATA_DIR` and the file system directory
+
+A directory containing the outputs of all @neume-network/strategies is called
+the `DATA_DIR`. Apart from guaranteeing the environment variable's existence,
+@neume-network/core must guarantee the directory's existence on the user's file
+system.
 
 ## contributing
 
