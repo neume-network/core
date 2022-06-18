@@ -19,7 +19,7 @@ git clone git@github.com:neume-network/core.git
 # ⚠️ Be sure to update the variables in `.env` with the appropriate values!
 cp .env-copy .env
 
-# Install the dependnecies
+# Install the dependencies
 npm i
 
 # Run the service
