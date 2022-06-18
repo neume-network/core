@@ -12,10 +12,17 @@ Consider running your own node or choose an existing service from
 [ethereumnodes.com](https://ethereumnodes.com/).
 
 ```bash
+# Clone the repository
 git clone git@github.com:neume-network/core.git
+
+# Copy the example .env file
+# ⚠️ Be sure to update the variables in `.env` with the appropriate values!
 cp .env-copy .env
-# and replace `RPC_HTTP_HOST` with your node's URL
+
+# Install the dependnecies
 npm i
+
+# Run the service
 npm run dev
 ```
 
