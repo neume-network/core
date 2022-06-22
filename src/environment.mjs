@@ -5,11 +5,9 @@ import { NotFoundError } from "./errors.mjs";
 
 export const requiredVars = [
   "RPC_HTTP_HOST",
-  "RPC_API_KEY",
   "DATA_DIR",
   "EXTRACTION_WORKER_CONCURRENCY",
   "IPFS_HTTPS_GATEWAY",
-  "IPFS_HTTPS_GATEWAY_KEY",
 ];
 
 export function validate(required) {
