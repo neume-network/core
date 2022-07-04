@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/neume-network/neume-network-core#readme",
   "dependencies": {
-    "@neume-network/extraction-worker": "0.3.0",
+    "@neume-network/extraction-worker": "0.3.1",
     "debug": "4.3.4",
     "dotenv": "16.0.0"
   },
