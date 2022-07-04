@@ -28,6 +28,9 @@ cp .env-copy .env
 # Install the dependencies
 npm i
 
+# Install eth-fun as a peerDependency
+npm i eth-fun --no-save
+
 # Run the service
 npm run dev
 ```

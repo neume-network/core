@@ -34,7 +34,8 @@
   "dependencies": {
     "@neume-network/extraction-worker": "0.3.1",
     "debug": "4.3.4",
-    "dotenv": "16.0.0"
+    "dotenv": "16.0.0",
+    "eth-fun": "0.8.0"
   },
   "devDependencies": {
     "ava": "4.1.0",
