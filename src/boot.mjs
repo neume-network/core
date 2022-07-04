@@ -16,7 +16,11 @@ async function boot() {
   await disc.provisionDir(resolve(__dirname, "..", env.DATA_DIR));
 
   const workerData = {
-    concurrency: parseInt(env.EXTRACTION_WORKER_CONCURRENCY, 10),
+    queue: {
+      options: {
+        concurrency: parseInt(env.EXTRACTION_WORKER_CONCURRENCY, 10),
+      },
+    },
   };
   const worker = new Worker(workerPath, {
     workerData,
