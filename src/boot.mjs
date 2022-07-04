@@ -18,7 +18,7 @@ async function boot() {
   const workerData = {
     queue: {
       options: {
-        concurrency: parseInt(env.EXTRACTION_WORKER_CONCURRENCY, 10),
+        concurrent: parseInt(env.EXTRACTION_WORKER_CONCURRENCY, 10),
       },
     },
   };

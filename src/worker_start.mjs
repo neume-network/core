@@ -10,7 +10,7 @@ const module = {
     workerData: {
       queue: {
         options: {
-          concurrency: 1,
+          concurrent: 1,
         },
       },
     },
