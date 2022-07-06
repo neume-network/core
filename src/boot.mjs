@@ -11,7 +11,7 @@ import * as disc from "./disc.mjs";
 
 const workerPath = resolve(__dirname, "./worker_start.mjs");
 
-async function boot() {
+export async function createWorker() {
   environment.validate(environment.requiredVars);
   await disc.provisionDir(resolve(__dirname, "..", env.DATA_DIR));
 
@@ -26,9 +26,15 @@ async function boot() {
     workerData,
   });
 
+  return worker;
+}
+
+async function boot(worker) {
   await strategies.run(worker);
 }
 
-boot()
-  .catch((err) => console.error(err))
-  .then();
+if (env.NODE_ENV !== "test") {
+  createWorker()
+    .then(boot)
+    .catch((err) => console.error("******", err));
+}
