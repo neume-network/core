@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "description": "neume network is a community-owned network to scale music and web3 - connecting Artist DAOs, Tokens, NFTs and whatever comes next.",
   "main": "./src/boot.mjs",
+  "bin": {
+    "neume": "neume.mjs"
+  },
   "scripts": {
     "postinstall": "git submodule sync && git submodule update --init && cd ./src/strategies && npm install",
     "test": "ava --verbose --timeout=20s",
-    "dev": "DEBUG=neume-network-* node ./src/boot.mjs",
+    "dev": "DEBUG=neume-network-* node ./neume.mjs --path crawl_path.mjs",
     "dev:silent": "node ./src/boot.mjs",
     "prepare": "husky install"
   },
@@ -35,7 +38,8 @@
     "@neume-network/extraction-worker": "0.4.0",
     "debug": "4.3.4",
     "dotenv": "16.0.0",
-    "eth-fun": "0.9.0"
+    "eth-fun": "0.9.0",
+    "yargs": "^17.5.1"
   },
   "devDependencies": {
     "ava": "4.1.0",

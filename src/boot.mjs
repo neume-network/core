@@ -29,12 +29,12 @@ export async function createWorker() {
   return worker;
 }
 
-async function boot(worker) {
-  await strategies.run(worker);
-}
-
-if (env.NODE_ENV !== "test") {
-  createWorker()
-    .then(boot)
-    .catch((err) => console.error("******", err));
+export async function boot(crawlPathFile) {
+  try {
+    const crawlPath = (await import(resolve(crawlPathFile))).default;
+    const worker = await createWorker();
+    await strategies.run(worker, crawlPath);
+  } catch (err) {
+    console.error(err);
+  }
 }
