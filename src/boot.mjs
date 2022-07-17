@@ -13,7 +13,7 @@ const workerPath = resolve(__dirname, "./worker_start.mjs");
 
 export async function createWorker() {
   environment.validate(environment.requiredVars);
-  await disc.provisionDir(resolve(__dirname, "..", env.DATA_DIR));
+  await disc.provisionDir(resolve(env.DATA_DIR));
 
   const workerData = {
     queue: {

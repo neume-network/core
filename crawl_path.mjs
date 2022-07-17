@@ -6,7 +6,7 @@ import { env } from "process";
 // TODO: Define and check for valid message schema. Current lifecycle message schema
 // doesn't work. https://github.com/neume-network/message-schema/issues/19
 export default [
-  [{ name: "web3subgraph", extractor: {}, transform: {} }],
+  [{ name: "web3subgraph", extractor: {}, transformer: {} }],
   [
     {
       name: "soundxyz-call-tokenuri",
@@ -59,7 +59,7 @@ export default [
     {
       name: "music-os-accumulator",
       extractor: { args: [] },
-      transformer: {},
+      transformer: null,
     },
   ],
 ];
