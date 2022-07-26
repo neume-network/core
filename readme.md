@@ -28,9 +28,21 @@ cp .env-copy .env
 # Install the dependencies
 npm i
 
-# Run the service
-npm run dev
+# Install eth-fun as a peerDependency
+npm i eth-fun --no-save
 ```
+
+### how to run?
+
+neume has a CLI which can be used to run strategies. Strategies are like React components which can extract, transform and load data.
+
+The `crawl-path-file` specifies the sequence in which to run the strategies.
+
+```sh
+./neume.mjs --path <crawl-path-file>
+```
+
+`crawl_path.mjs` is a sample crawl path which can also be run through `npm run dev`.
 
 ## component contract
 
