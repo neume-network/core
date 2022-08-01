@@ -34,15 +34,36 @@ npm i eth-fun --no-save
 
 ### how to run?
 
-neume has a CLI which can be used to run strategies. Strategies are like React components which can extract, transform and load data.
+The easiet way to run is using
 
-The `crawl-path-file` specifies the sequence in which to run the strategies.
-
-```sh
-./neume.mjs --path <crawl-path-file>
+```
+npm run dev
 ```
 
-`crawl_path.mjs` is a sample crawl path which can also be run through `npm run dev`.
+### CLI
+
+neume has a CLI which can be used to run strategies. Strategies are like React components which can extract, transform and load data.
+
+#### CLI options
+
+```
+Usage: neume.mjs <options>
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+  --path     Sequence of strategies that the crawler will follow.     [required]
+  --config   Configuration for neume CLI
+```
+
+##### example
+
+```sh
+./neume.mjs --path crawl_path.mjs --config config.mjs
+```
+
+- `crawl_path.mjs`: A crawl path that runs all strategies supported by neume to crawl music NFTs.
+- `config.mjs`: A sample configuration which should be modified according to your environment. Configuration should follow the schema given in [@neume-network/schema](https://github.com/neume-network/schema/blob/main/src/schema.mjs).
 
 ## component contract
 

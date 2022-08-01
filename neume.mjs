@@ -7,8 +7,10 @@ import { boot } from "./src/boot.mjs";
 
 const argv = yargs(hideBin(process.argv))
   .usage("Usage: $0 <options>")
-  .describe("path", "Path for the crawler")
+  .describe("path", "Sequence of strategies that the crawler will follow.")
   .nargs("path", 1)
-  .demandOption("path").argv;
+  .demandOption("path")
+  .describe("config", "Configuration for neume CLI")
+  .nargs("config", 1).argv;
 
-boot(argv.path);
+boot(argv.path, argv.config);
