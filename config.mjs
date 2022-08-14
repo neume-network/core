@@ -1,6 +1,11 @@
 import { env } from "process";
 
 export default {
+  queue: {
+    options: {
+      concurrent: parseInt(env.EXTRACTION_WORKER_CONCURRENCY, 10),
+    },
+  },
   endpoints: {
     [env.RPC_HTTP_HOST]: {
       timeout: 10_000,

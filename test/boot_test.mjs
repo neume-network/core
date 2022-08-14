@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 test("should be able to create worker", (t) => {
   return new Promise((resolve, reject) => {
-    createWorker().then((w) => {
+    createWorker({ queue: { options: { concurrent: 10 } } }).then((w) => {
       setTimeout(() => {
         // no error has occured until now, safe to pass the test
         t.pass();

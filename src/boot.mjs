@@ -33,16 +33,8 @@ export async function createWorker(config) {
   environment.validate(environment.requiredVars);
   await disc.provisionDir(resolve(env.DATA_DIR));
 
-  const workerData = {
-    queue: {
-      options: {
-        concurrent: parseInt(env.EXTRACTION_WORKER_CONCURRENCY, 10),
-      },
-    },
-    ...config,
-  };
   const worker = new Worker(workerPath, {
-    workerData,
+    workerData: config,
   });
 
   return worker;
