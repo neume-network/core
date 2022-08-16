@@ -38,7 +38,7 @@
     "@neume-network/extraction-worker": "0.6.0",
     "debug": "4.3.4",
     "dotenv": "16.0.0",
-    "eth-fun": "0.9.0",
+    "eth-fun": "0.9.1",
     "yargs": "^17.5.1"
   },
   "devDependencies": {
