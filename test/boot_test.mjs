@@ -27,6 +27,12 @@ test("should be able getConfig for a valid path", async (t) => {
   await t.notThrowsAsync(() => getConfig(resolve(__dirname, "../config.mjs")));
 });
 
+test("if getConfig fails on invalid config", async (t) => {
+  await t.throwsAsync(() =>
+    getConfig(resolve(__dirname, "../test/fixtures/falseconfig.mjs"))
+  );
+});
+
 test("getConfig should throw error for invalid path", async (t) => {
   await t.throwsAsync(() => getConfig(resolve(__dirname)));
 });
