@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "git submodule sync && git submodule update --init && cd ./src/strategies && npm install",
     "test": "ava --verbose --timeout=20s",
-    "dev": "DEBUG=neume-network-* node ./neume.mjs --path crawl_path.mjs",
+    "dev": "DEBUG=neume-network-* node ./neume.mjs --path crawl_path.mjs --config config.mjs",
     "dev:silent": "node ./src/boot.mjs",
     "prepare": "husky install"
   },
@@ -36,6 +36,9 @@
   "homepage": "https://github.com/neume-network/neume-network-core#readme",
   "dependencies": {
     "@neume-network/extraction-worker": "0.6.0",
+    "@neume-network/schema": "0.3.1",
+    "ajv": "8.11.0",
+    "ajv-formats": "2.1.1",
     "debug": "4.3.4",
     "dotenv": "16.0.0",
     "eth-fun": "0.9.1",
