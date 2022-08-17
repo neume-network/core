@@ -1,3 +1,7 @@
 export default {
-  thisis: false,
+  endpoints: {
+    thisistotallyfalse: {
+      "or is it?": "???",
+    },
+  },
 };
