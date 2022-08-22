@@ -3,8 +3,6 @@ import { env } from "process";
 
 // crawlPath[i] and crawlPath[i+1] are executed in sequence
 // crawlPath[i][j] and crawlPath[i][j+1] are executed in parallel
-// TODO: Define and check for valid message schema. Current lifecycle message schema
-// doesn't work. https://github.com/neume-network/message-schema/issues/19
 export default [
   [{ name: "web3subgraph", extractor: {}, transformer: {} }],
   [
