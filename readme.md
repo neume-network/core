@@ -1,4 +1,4 @@
-# neume-network-core
+# @neume-network/core
 
 [![dry run prettier](https://github.com/neume-network/core/actions/workflows/prettier.yml/badge.svg)](https://github.com/neume-network/core/actions/workflows/prettier.yml)
 [![unit tests](https://github.com/neume-network/core/actions/workflows/node.js.yml/badge.svg)](https://github.com/neume-network/core/actions/workflows/node.js.yml)
@@ -17,6 +17,10 @@ neume-network-core is dependent on an Ethereum full node JSON-RPC interface.
 Consider running your own node or choose an existing service from
 [ethereumnodes.com](https://ethereumnodes.com/).
 
+You'll receive the best results by running Erigon and colocating the neume
+network crawler on the same machine as communication through a local socket is
+vastly more performant compared to extraction over the network.
+
 ```bash
 # Clone the repository
 git clone git@github.com:neume-network/core.git
@@ -27,9 +31,6 @@ cp .env-copy .env
 
 # Install the dependencies
 npm i
-
-# Install eth-fun as a peerDependency
-npm i eth-fun --no-save
 ```
 
 ### how to run?
@@ -40,7 +41,9 @@ The easiet way to run is using
 npm run dev
 ```
 
-## Components
+It'll default to using the `./crawl_path.mjs` and `config.mjs` file.
+
+## components
 
 Each component of neume is published as a npm package. Below are the main
 components of neume.
@@ -56,6 +59,58 @@ For example, we can define a strategy that will _extract_ `tokenURI` from given
 a list NFT addresses and then _transform_ the `tokenURI` to change `ipfs://` to
 `https://ipfs.io/`. For more information visit
 [neume-network/strategies](https://github.com/neume-network/strategies/).
+
+## component contract
+
+@neume-network/core guarantees the existence of variables and folders to other
+@neume-network packages like @neume-network/strategies. Below, we outline what
+core is currently guaranteeing:
+
+### existence and definition of environment variables
+
+@neume-network/core must guarantee the existence and definition of the following
+environment variables:
+
+```
+RPC_HTTP_HOST=https://
+DATA_DIR=data
+EXTRACTION_WORKER_CONCURRENCY=12
+IPFS_HTTPS_GATEWAY=https://
+```
+
+- If `RPC_HTTP_HOST` requires Bearer-token authorization, users must define
+  `RPC_API_KEY` to be used in an HTTP `Authorization: Bearer ${RPC_API_KEY}`
+  header.
+- If `IPFS_HTTPS_GATEWAY` requires Bearer-token authorization, users must define
+  `IPFS_HTTPS_GATEWAY_KEY` to be used in an HTTP
+  `Authorization: Bearer ${IPFS_HTTPS_GATEWAY_KEY}` header.
+
+### managing `DATA_DIR` and the file system directory
+
+A directory containing the outputs of all @neume-network/strategies is called
+the `DATA_DIR`. Apart from guaranteeing the environment variable's existence,
+@neume-network/core must guarantee the directory's existence on the user's file
+system.
+
+### JavaScript Usage
+
+neume can be imported as a JavaScript utility to run strategies.
+
+```js
+import { boot } from "@neume-network/core";
+
+const crawlPath = [[{ name: "get-xkcd", extractor: {} }]];
+const config = {
+  queue: {
+    options: {
+      concurrent: 1,
+    },
+  },
+};
+(async () => {
+  await boot(crawlPath, config);
+})();
+```
 
 ### CLI
 
@@ -142,38 +197,6 @@ export default [
   ],
 ];
 ```
-
-## component contract
-
-@neume-network/core guarantees the existence of variables and folders to other
-@neume-network packages like @neume-network/strategies. Below, we outline what
-core is currently guaranteeing:
-
-### existence and definition of environment variables
-
-@neume-network/core must guarantee the existence and definition of the following
-environment variables:
-
-```
-RPC_HTTP_HOST=https://
-DATA_DIR=data
-EXTRACTION_WORKER_CONCURRENCY=12
-IPFS_HTTPS_GATEWAY=https://
-```
-
-- If `RPC_HTTP_HOST` requires Bearer-token authorization, users must define
-  `RPC_API_KEY` to be used in an HTTP `Authorization: Bearer ${RPC_API_KEY}`
-  header.
-- If `IPFS_HTTPS_GATEWAY` requires Bearer-token authorization, users must define
-  `IPFS_HTTPS_GATEWAY_KEY` to be used in an HTTP
-  `Authorization: Bearer ${IPFS_HTTPS_GATEWAY_KEY}` header.
-
-### managing `DATA_DIR` and the file system directory
-
-A directory containing the outputs of all @neume-network/strategies is called
-the `DATA_DIR`. Apart from guaranteeing the environment variable's existence,
-@neume-network/core must guarantee the directory's existence on the user's file
-system.
 
 ## contributing
 

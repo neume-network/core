@@ -40,13 +40,7 @@ export async function createWorker(config) {
   return worker;
 }
 
-export async function boot(crawlPathFile, configFile) {
-  try {
-    const crawlPath = (await import(resolve(crawlPathFile))).default;
-    const config = await getConfig(configFile);
-    const worker = await createWorker(config);
-    await strategies.run(worker, crawlPath);
-  } catch (err) {
-    console.error(err);
-  }
+export async function boot(crawlPath, config) {
+  const worker = await createWorker(config);
+  return await strategies.run(worker, crawlPath);
 }

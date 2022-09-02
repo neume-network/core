@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
+import "dotenv/config";
+import { resolve } from "path";
+
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { boot } from "./src/boot.mjs";
+import { boot, getConfig } from "./src/boot.mjs";
 
 const argv = yargs(hideBin(process.argv))
   .usage("Usage: $0 <options>")
@@ -13,4 +16,12 @@ const argv = yargs(hideBin(process.argv))
   .describe("config", "Configuration for neume CLI")
   .nargs("config", 1).argv;
 
-boot(argv.path, argv.config);
+(async () => {
+  const crawlPath = (await import(resolve(argv.path))).default;
+  const config = await getConfig(argv.config);
+  try {
+    await boot(crawlPath, config);
+  } catch (err) {
+    console.error(err.toString());
+  }
+})();

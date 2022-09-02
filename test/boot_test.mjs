@@ -2,9 +2,34 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import test from "ava";
 
-import { createWorker, getConfig } from "../src/boot.mjs";
+import { boot, createWorker, getConfig } from "../src/boot.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+test("if neume boot can be started programmatically", async (t) => {
+  const crawlPath = [[{ name: "music-os-accumulator", extractor: {} }]];
+  const config = {
+    queue: {
+      options: {
+        concurrent: 1,
+      },
+    },
+  };
+  await boot(crawlPath, config);
+  t.pass();
+});
+
+test("if neume boot can throw errors", async (t) => {
+  const crawlPath = [[{ name: "doesn't exist", extractor: {} }]];
+  const config = {
+    queue: {
+      options: {
+        concurrent: 1,
+      },
+    },
+  };
+  await t.throwsAsync(async () => await boot(crawlPath, config));
+});
 
 test("should be able to create worker", (t) => {
   return new Promise((resolve, reject) => {
