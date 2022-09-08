@@ -6,7 +6,7 @@ import { boot, createWorker, getConfig } from "../src/boot.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-test("if neume boot can be started programmatically", async (t) => {
+test.serial("if neume boot can be started programmatically", async (t) => {
   const crawlPath = [[{ name: "music-os-accumulator", extractor: {} }]];
   const config = {
     queue: {
@@ -19,7 +19,7 @@ test("if neume boot can be started programmatically", async (t) => {
   t.pass();
 });
 
-test("if neume boot can throw errors", async (t) => {
+test.serial("if neume boot can throw errors", async (t) => {
   const crawlPath = [[{ name: "doesn't exist", extractor: {} }]];
   const config = {
     queue: {
@@ -31,7 +31,7 @@ test("if neume boot can throw errors", async (t) => {
   await t.throwsAsync(async () => await boot(crawlPath, config));
 });
 
-test("should be able to create worker", (t) => {
+test.serial("should be able to create worker", (t) => {
   return new Promise((resolve, reject) => {
     createWorker({ queue: { options: { concurrent: 10 } } }).then((w) => {
       setTimeout(() => {
