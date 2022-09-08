@@ -22,6 +22,10 @@ const argv = yargs(hideBin(process.argv))
   try {
     await boot(crawlPath, config);
   } catch (err) {
-    console.error(err.toString());
+    console.error(
+      "An unhandled error has bubbled up which shouldn't have happened. Force closing the application."
+    );
+    console.error(err);
+    process.exit();
   }
 })();
