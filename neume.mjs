@@ -1,4 +1,4 @@
-#!/usr/bin/env node --unhandled-rejections=throw
+#!/usr/bin/env node
 
 import "dotenv/config";
 import { resolve } from "path";
