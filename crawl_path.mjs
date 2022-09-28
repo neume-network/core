@@ -6,6 +6,14 @@ import { env } from "process";
 export default [
   [
     {
+      name: "logs-to-subgraph",
+      transformer: {
+        args: [resolve(env.DATA_DIR, "call-block-logs-transformation")],
+      },
+    },
+  ],
+  [
+    {
       name: "catalog-call-tokenuri",
       extractor: {
         args: [resolve(env.DATA_DIR, "logs-to-subgraph-transformation")],

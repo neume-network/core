@@ -35,7 +35,19 @@ npm i
 
 ### how to run?
 
-The easiet way to run is using
+The easiet way to run is using is via npm scripts.
+
+However, there may be one issue to get started with, which is syncing an
+Ethereum full node and downloading all event logs manually. To turbo start you,
+we can offer to download a prefiltered flat file of event logs from all music
+NFT platforms we currently crawl called the `call-block-logs-transformation`
+file. We recommend everyone to host their own nodes of course, do it anon!
+
+```
+# The following line assumes your is DATA_DIR=data
+curl https://raw.githubusercontent.com/neume-network/data/main/results/call-block-logs-transformation > \
+  data/call-block-logs-transformation
+```
 
 ```
 npm run dev
