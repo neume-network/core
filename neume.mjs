@@ -1,4 +1,8 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node --unhandled-rejections=throw
+
+// Note: The -S flag for env is available for FreeBSD and coreutils >= 8.30
+// It should work in macOS and newer linux versions
+// https://www.gnu.org/software/coreutils/manual/html_node/env-invocation.html#g_t_002dS_002f_002d_002dsplit_002dstring-usage-in-scripts
 
 import "dotenv/config";
 import { resolve } from "path";
