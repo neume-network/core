@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/neume-network/neume-network-core#readme",
   "dependencies": {
-    "@neume-network/extraction-worker": "0.7.0",
+    "@neume-network/extraction-worker": "0.6.0",
     "@neume-network/schema": "0.5.1",
     "ajv": "8.11.0",
     "ajv-formats": "2.1.1",
