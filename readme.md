@@ -69,7 +69,7 @@ The _core_ is the entrypoint for neume.
 Strategies are like React components which can extract, transform and load data.
 For example, we can define a strategy that will _extract_ `tokenURI` from given
 a list NFT addresses and then _transform_ the `tokenURI` to change `ipfs://` to
-`https://ipfs.io/`. For more information visit
+`https://ipfs.io/` or `ar://` to `https://arweave.net/`. For more information visit
 [neume-network/strategies](https://github.com/neume-network/strategies/).
 
 ## component contract
@@ -88,6 +88,7 @@ RPC_HTTP_HOST=https://
 DATA_DIR=data
 EXTRACTION_WORKER_CONCURRENCY=12
 IPFS_HTTPS_GATEWAY=https://
+ARWEAVE_HTTPS_GATEWAY=https://
 ```
 
 - If `RPC_HTTP_HOST` requires Bearer-token authorization, users must define

@@ -8,6 +8,7 @@ export const requiredVars = [
   "DATA_DIR",
   "EXTRACTION_WORKER_CONCURRENCY",
   "IPFS_HTTPS_GATEWAY",
+  "ARWEAVE_HTTPS_GATEWAY",
 ];
 
 export function validate(required) {
