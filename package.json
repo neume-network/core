@@ -65,7 +65,8 @@
       "RPC_API_KEY": "ABC",
       "DATA_DIR": "data",
       "EXTRACTION_WORKER_CONCURRENCY": "12",
-      "IPFS_HTTPS_GATEWAY": "https://cloudflare-ipfs.com/ipfs/"
+      "IPFS_HTTPS_GATEWAY": "https://cloudflare-ipfs.com/ipfs/",
+      "ARWEAVE_HTTPS_GATEWAY": "https://arweave.net"
     },
     "require": [
       "dotenv/config"
